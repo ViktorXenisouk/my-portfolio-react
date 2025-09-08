@@ -43,7 +43,7 @@ const CarouselWithButtons = ({ children, height = '300px' }: Props) => {
       <Box
         sx={{
           bgcolor: 'background.paper',
-          borderRadius: 5,
+          borderRadius: 2,
           borderWidth: '1px',
           borderStyle: 'solid',
           borderColor: 'primary.main',
@@ -91,7 +91,7 @@ const CarouselWithButtons = ({ children, height = '300px' }: Props) => {
   return (
     <Box
       sx={{
-        borderRadius: 5,
+        borderRadius: 2,
         borderWidth: '1px',
         borderStyle: 'solid',
           borderColor: 'primary.main',

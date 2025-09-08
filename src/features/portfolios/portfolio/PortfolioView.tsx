@@ -5,9 +5,12 @@ import { IPortfolio } from "../types";
 import ImageCarousel from "../../../components/image-carousel/ImageCarousel";
 import PortfolioCarousel from '../portfolio-carousel/PortfolioCarousel';
 import PortfolioList from "../portfolio-list/PortfolioList";
+import { useLabels } from "../../labels/useLabels";
 
 const PortfolioView: React.FC<IPortfolio> = (props: IPortfolio) => {
-    const { title_ru, description_ru, tags, imgs,id } = props
+    const { title, description, tags, imgs,id } = props
+
+    const labels = useLabels()
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
@@ -19,7 +22,7 @@ const PortfolioView: React.FC<IPortfolio> = (props: IPortfolio) => {
                     textDecoration: 'underline',
                     mt: '30px'
                 }}>
-                {title_ru}
+                {title}
             </Typography>
             <Box
                 sx={{
@@ -39,8 +42,8 @@ const PortfolioView: React.FC<IPortfolio> = (props: IPortfolio) => {
                             }}>
                             <Box sx={{ p: '12px' }}>
                                 <Typography color='text.secondary' align="left">
-                                    <Box component='span' color='text.primary'>description: </Box>
-                                    {description_ru}
+                                    <Box component='span' color='text.primary'>{labels.description}: </Box>
+                                    {description}
                                     </Typography>
                                 <Divider sx={{ mt: '10px', mb: '20px' }} />
                                 <TagsContainer tags={tags} />

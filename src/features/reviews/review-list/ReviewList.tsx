@@ -1,10 +1,10 @@
 import React, { useState, Fragment } from "react";
 import { Box, Grid, useTheme, useMediaQuery } from "@mui/material";
-import { REVIEWS } from "../data";
 import ReviewItem from './ReviewItem';
 import ReviewModal from "../review-modal/ReviewModal";
 import { IReview } from "../types";
 import { useBreakpointValue } from "../../../hooks/useBreakpointValue";
+import { useReviews } from "../useReviews";
 
 const ReviewList = () => {
 
@@ -18,7 +18,9 @@ const ReviewList = () => {
 
     const [review, setReview] = useState<IReview>()
 
-    const reviews = REVIEWS.sort((a, b) => b.rate - a.rate).slice(0, count)
+    const reviews = useReviews()
+
+    const sortedReviews = reviews.sort((a, b) => b.rate - a.rate).slice(0, count)
 
     const closeHandler = () => {
         setReview(undefined)
@@ -33,7 +35,7 @@ const ReviewList = () => {
             <Box>
                 <Box sx={{ m: 2 }}>
                     <Grid container spacing={3}>
-                        {reviews.map((item) =>
+                        {sortedReviews.map((item) =>
                             <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                                 <ReviewItem review={item} onClick={clickHandler} />
                             </Grid>)}

@@ -3,11 +3,14 @@ import { Box, Paper, Rating, Typography, Button, Icon,Divider } from "@mui/mater
 import { Person } from "@mui/icons-material"
 import { IReview } from "./types";
 import parseDate from '../../utils/parse-date';
+import { useLabels } from "../labels/useLabels";
 
-const maxLength = 200
+const maxLength = 150
 
 const RewiewsCard: React.FC<IReview> = (props) => {
     const { name, text, rate, date } = props
+
+    const labels = useLabels()
 
     const [expanded, setExpanded] = useState(false);
     const isLong = text.length > maxLength;
@@ -41,7 +44,7 @@ const RewiewsCard: React.FC<IReview> = (props) => {
                         onClick={() => setExpanded(!expanded)}
                         sx={{ mt: 1, width: '100%', px: '30px' }}
                     >
-                        {expanded ? 'hide' : 'show'}
+                        {expanded ? labels.hide : labels.show}
                     </Button>
                 </Box>
             )}

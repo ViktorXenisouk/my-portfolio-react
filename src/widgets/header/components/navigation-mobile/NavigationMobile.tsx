@@ -2,6 +2,7 @@ import React, { useState, Fragment } from "react"
 import { usePages } from "../../../usePages"
 import { Link as RouterLink } from "react-router-dom"
 import { Logo } from "../Logo";
+import LanguageSwitcher from "../../../../UI/LanguageSwitcher"
 import {
   Box,
   Drawer,
@@ -13,7 +14,7 @@ import {
   Typography,
   Stack,
 } from '@mui/material';
-import { Menu, ShoppingBasketRounded } from "@mui/icons-material"
+import { Menu } from "@mui/icons-material"
 
 const NavigationMobile: React.FC = () => {
 
@@ -33,7 +34,7 @@ const NavigationMobile: React.FC = () => {
           <Menu />
         </IconButton>
         <Stack direction='row'>
-  
+  <LanguageSwitcher/>
         </Stack>
       </Box>
       <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>

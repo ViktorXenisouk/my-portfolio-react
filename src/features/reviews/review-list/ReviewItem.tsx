@@ -3,6 +3,7 @@ import { Box, Paper, Rating, Typography, Button, Icon, Divider } from "@mui/mate
 import { Person } from "@mui/icons-material"
 import { IReview } from "../types";
 import parseDate from '../../../utils/parse-date';
+import { useLabels } from "../../labels/useLabels";
 
 
 type Props = {
@@ -10,10 +11,12 @@ type Props = {
     onClick: (rev: IReview) => void
 }
 
-const maxLength = 200
+const maxLength = 100
 
 const ReviewItem: React.FC<Props> = ({ review, onClick }) => {
     const { name, text, rate, date } = review
+
+    const labels = useLabels()
 
     const isLong = text.length > maxLength;
     const displayText = !isLong
@@ -45,7 +48,7 @@ const ReviewItem: React.FC<Props> = ({ review, onClick }) => {
                 </Typography>
             </Box>
             <Button onClick={clickHandler} sx={{m:1}}>
-                Show More
+                {labels.show_more}
             </Button>
         </Paper>
     )

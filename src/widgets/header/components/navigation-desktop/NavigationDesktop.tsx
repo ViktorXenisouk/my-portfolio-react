@@ -2,8 +2,8 @@ import MyLink from "../../UI/MyLink"
 import { Logo } from "../Logo"
 import { usePages } from "../../../usePages"
 import { Link } from "react-router-dom"
-
-import { Box, Button, Stack, IconButton, Badge } from '@mui/material';
+import LanguageSwitcher from "../../../../UI/LanguageSwitcher"
+import { Box, Stack, IconButton, Badge } from '@mui/material';
 
 const NavigationDesktop = () => {
 const pages = usePages()
@@ -16,9 +16,9 @@ const pages = usePages()
         justifyContent: 'space-between',
         alignItems: 'center'
       }}>
-      <Button component={Link} to={'/'}>
+      <IconButton component={Link} to={'/'} sx={{backgroundImage: "linear-gradient(135deg, #4f46e5, #06b6d4)"}}>
         <Logo />
-      </Button>
+      </IconButton>
 
       <Stack
         direction="row"
@@ -43,6 +43,7 @@ const pages = usePages()
         sx={{
           mr: 4
         }}>
+          <LanguageSwitcher/>
       </Stack>
     </Box>
   );

@@ -1,7 +1,6 @@
 import { create } from "zustand"
 import { persist } from 'zustand/middleware'
-
-type Language = 'en' | 'ru'
+import { Language } from "../types/Language"
 
 type LanguageState = {
     setLanguage: (lan: Language) => void,
@@ -10,7 +9,7 @@ type LanguageState = {
 
 const useLanguageStore = create<LanguageState>()(persist(
     (set) => ({
-        language: 'en',
+        language: 'ru',
         setLanguage: (value) => {
             set({ language: value })
         }

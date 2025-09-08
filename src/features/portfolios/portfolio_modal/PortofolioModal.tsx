@@ -5,6 +5,7 @@ import TagsContainer from "../../../UI/TagsContainer";
 import { IPortfolio } from "../types";
 import ImageCarousel from "../../../components/image-carousel/ImageCarousel";
 import NoFoundErrorPage from "../../../pages/NoFoundErrorPage";
+import { useLabels } from "../../labels/useLabels";
 
 type Props = {
     portfolio?: IPortfolio,
@@ -13,6 +14,7 @@ type Props = {
 }
 
 const PortfolioModal: React.FC<Props> = ({ open, portfolio, onClose }) => {
+    const labels = useLabels()
 
     if (!portfolio) {
         return (
@@ -22,7 +24,7 @@ const PortfolioModal: React.FC<Props> = ({ open, portfolio, onClose }) => {
         )
     }
 
-    const { title_ru, description_ru, tags, imgs } = portfolio
+    const { title, description, tags, imgs } = portfolio
 
     return (
         <Modal open={open} onClose={onClose} sx={{
@@ -43,7 +45,7 @@ const PortfolioModal: React.FC<Props> = ({ open, portfolio, onClose }) => {
                         textAlign: 'center',
                         my: 1
                     }}>
-                    {title_ru}
+                    {title}
                 </Typography>
                 <Box sx={{ m: 2 }}>
                     <ImageCarousel imgs={imgs.map((v) => { return { url: v, name: 'image' } })} />
@@ -56,8 +58,8 @@ const PortfolioModal: React.FC<Props> = ({ open, portfolio, onClose }) => {
                         }}>
                         <Typography align="left" color="text.secondary">
                             <Box component='span' color='text.primary'>
-                                description:
-                            </Box> {description_ru}
+                                {labels.description}:
+                            </Box> {description}
                         </Typography>
                         <Divider sx={{ my: 4 }} />
                         <TagsContainer tags={tags} />

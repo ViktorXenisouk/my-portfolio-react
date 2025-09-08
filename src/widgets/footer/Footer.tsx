@@ -1,8 +1,9 @@
 import { Link as RouterLink } from 'react-router-dom';
-import {  usePages } from "../usePages"
-import { Box, Container, Grid, IconButton, Link, Typography, useMediaQuery, useTheme, BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
-import { Facebook, Twitter, Instagram, GitHub, LinkedIn, Person2, SportsMartialArts, Home, Restore, Comment, Computer } from '@mui/icons-material';
-import { useLabel } from '../../hooks/useLabel';
+import { usePages } from "../usePages"
+import { Box, Container, Grid, IconButton, Link, Typography, useMediaQuery, useTheme, Paper, Tooltip } from '@mui/material';
+import { GitHub, Work } from '@mui/icons-material';
+import { useLabels } from '../../features/labels/useLabels';
+import MobileFooter from './MobileFooter';
 
 const Footer = () => {
   const theme = useTheme()
@@ -10,28 +11,12 @@ const Footer = () => {
 
   const pages = usePages()
 
-  const labels = useLabel()
+  const labels = useLabels()
 
-  if (isMobile) {
-
+  if (isMobile)
     return (
-      <BottomNavigation sx={{
-        borderTop: '1px solid',
-        borderTopColor: 'divider',
-        position: 'fixed',
-        zIndex: 3,
-        bottom: 0,
-        left: 0,
-        right: 0
-      }}>
-        <BottomNavigationAction component={RouterLink} to='/' icon={<Home />} label='Main' />
-        <BottomNavigationAction component={RouterLink} to='/skills' icon={<SportsMartialArts />} label='Basket' />
-        <BottomNavigationAction component={RouterLink} to='/portfolios' icon={<Computer />} label='Basket' />
-        <BottomNavigationAction component={RouterLink} to='/reviews' icon={<Comment />} label='Favorite' />
-        <BottomNavigationAction component={RouterLink} to='/contacts' icon={<Person2 />} label='My Acount' />
-      </BottomNavigation>
+      <MobileFooter />
     )
-  }
   else
     return (
       <Paper
@@ -39,19 +24,20 @@ const Footer = () => {
         sx={{
           borderRadius: 0,
           position: 'relative',
-          paddingY: 4,
+          py: 4,
           marginTop: 'auto',
           borderTopWidth: '1px',
           borderTopStyle: 'solid',
           borderTopColor: 'divider',
-          zIndex: '2'
+          zIndex: '2',
+          height: '200px'
         }}
       >
         <Container maxWidth="lg">
           <Grid container spacing={4} justifyContent="space-between">
             <Grid size={{ xs: 12, md: 4 }}>
               <Typography variant="h6" gutterBottom>
-                {labels.cvi}
+                {labels.cv}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 © {new Date().getFullYear()} CVI. All rights reserved.
@@ -73,21 +59,16 @@ const Footer = () => {
                 {labels.contact_info}
               </Typography>
               <Box>
-                <IconButton href="https://facebook.com" target="_blank" aria-label="Facebook">
-                  <Facebook />
-                </IconButton>
-                <IconButton href="https://twitter.com" target="_blank" aria-label="Twitter">
-                  <Twitter />
-                </IconButton>
-                <IconButton href="https://instagram.com" target="_blank" aria-label="Instagram">
-                  <Instagram />
-                </IconButton>
-                <IconButton href="https://github.com" target="_blank" aria-label="GitHub">
-                  <GitHub />
-                </IconButton>
-                <IconButton href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-                  <LinkedIn />
-                </IconButton>
+                <Tooltip title='GitHub' placement='top'>
+                  <IconButton href="https://github.com/ViktorXenisouk" target="_blank" aria-label="GitHub">
+                    <GitHub />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title='Kwork' placement='top'>
+                  <IconButton href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+                    <Work />
+                  </IconButton>
+                </Tooltip>
               </Box>
             </Grid>
           </Grid>

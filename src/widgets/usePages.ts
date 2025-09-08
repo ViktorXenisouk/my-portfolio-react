@@ -1,15 +1,14 @@
-import { ru } from "../data/labels"
+import { ru, en } from "../features/labels/data"
 import { useLanguageStore } from "../store/useLanguageStore"
 
 const usePages = () => {
     const { language } = useLanguageStore()
 
     return [
-        { title: ru.cvi, to: '/cvi' },
-        { title: ru.portfolio, to: '/portfolios' },
-        { title: ru.skills, to: '/skills' },
-        { title: ru.contacts, to: '/contacts' },
-        { title: ru.reviews, to: '/reviews' }
+        { title: language === 'ru' ? ru.cv : en.cv, to: '/cv' },
+        { title: language === 'ru' ? ru.portfolio : en.portfolio, to: '/portfolios' },
+        { title: language === 'ru' ? ru.skills : en.skills, to: '/skills' },
+        { title: language === 'ru' ? ru.reviews : en.reviews, to: '/reviews' }
     ]
 }
 

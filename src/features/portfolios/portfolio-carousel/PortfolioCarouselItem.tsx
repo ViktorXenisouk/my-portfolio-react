@@ -2,6 +2,7 @@ import React from "react";
 import { IPortfolio } from "../types";
 import { Box, Typography, Paper, Button } from "@mui/material";
 import parseDate from '../../../utils/parse-date';
+import { useLabels } from "../../labels/useLabels";
 
 const maxLength = 100
 
@@ -11,9 +12,11 @@ type Props = {
 }
 
 const PortfolioCarouselItem: React.FC<Props> = ({ portfolio, onClick }) => {
-    const { title_ru, description_ru, imgs, tags, git, id, date } = portfolio
+    const { title, description, imgs, tags, git, id, date } = portfolio
 
-    const displayDescription = description_ru.length > maxLength ? `${description_ru.slice(0, maxLength)}...` : description_ru
+    const labels = useLabels()
+
+    const displayDescription = description.length > maxLength ? `${description.slice(0, maxLength)}...` : description
 
     const clickHandler = () => {
         onClick(id)
@@ -23,7 +26,7 @@ const PortfolioCarouselItem: React.FC<Props> = ({ portfolio, onClick }) => {
         <Box sx={{ width: '300px', height: '100%', flexShrink: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: 1 }}>
             <Box>
                 <Typography color="text.primary">
-                    {title_ru}
+                    {title}
                 </Typography>
                 <Paper variant="outlined" sx={{ width: 'auto', display: 'flex', justifyContent: 'center', m: 1, p: 1 }}>
                     <Box
@@ -34,15 +37,15 @@ const PortfolioCarouselItem: React.FC<Props> = ({ portfolio, onClick }) => {
                 </Paper>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, m: 1, p: 1 }}>
                     <Typography align="left" color="text.secondary">
-                        <Box component='span' color='text.primary'>date: </Box>{parseDate(date)}
+                        <Box component='span' color='text.primary'>{labels.date}: </Box>{parseDate(date)}
                     </Typography>
                     <Typography align="left" color="text.secondary" sx={{ whiteSpace: 'break-spaces' }}>
-                        <Box component='span' color='text.primary'>discription: </Box> {displayDescription}
+                        <Box component='span' color='text.primary'>{labels.description}: </Box> {displayDescription}
                     </Typography>
                 </Box>
             </Box>
             <Button variant="outlined" onClick={clickHandler} sx={{ m: 1 }}>
-                Show More
+                {labels.show_more}
             </Button>
         </Box>
     )

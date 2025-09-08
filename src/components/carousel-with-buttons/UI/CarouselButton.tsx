@@ -39,7 +39,11 @@ const CarouselButton = ({ onClick, disabled, left, right, icon }: Props) => {
                 zIndex: 1,
                 color: theme => disabled ? theme.palette.action.disabled : undefined,
                 bgcolor: disabled ? 'action.disabled' : undefined,
-                ...borderProps
+                ...borderProps,
+                ':hover':{
+                    boxShadow:'none',
+                    transform:'none'
+                }
             }}
         >
             {icon}

@@ -2,18 +2,18 @@ import React, { useState, Fragment } from "react";
 import CarouselWithButtons from "../../../components/carousel-with-buttons/CarouselWithButtons";
 import PortfolioCarouselItem from "./PortfolioCarouselItem";
 import PortfolioModal from "../portfolio_modal/PortofolioModal";
-import { PORTFOLIOS } from "../data";
+import { usePortfolio } from "../usePortfolio";
 import { IPortfolio } from "../types";
 
 
 const PortfolioCarousel = () => {
 
-    const portfolios = PORTFOLIOS
+    const portfolios = usePortfolio()
 
     const [portfolio, setPorfolio] = useState<IPortfolio>()
 
     const clickHandler = (id: string) => {
-        const item = PORTFOLIOS.find((item) => item.id === id)
+        const item = portfolios.find((item) => item.id === id)
         setPorfolio(item)
     }
 

@@ -2,7 +2,7 @@ import { MenuItem, Select, InputLabel, FormControl, ToggleButtonGroup, ToggleBut
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { SortOption, SortOrder } from './types';
-import { useLabel } from '../../hooks/useLabel';
+import { useLabels } from '../../features/labels/useLabels';
 
 type Props = {
     onOptionChange: (option: SortOption) => void
@@ -13,7 +13,7 @@ type Props = {
 
 const Filter: React.FC<Props> = ({ onOptionChange, onOrderChange, option, order }) => {
 
-    const labels = useLabel()
+    const labels = useLabels()
 
     const handleSortOptionChange = (event: any) => {
         const newSort = event.target.value as SortOption;
