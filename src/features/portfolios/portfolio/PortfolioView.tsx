@@ -1,14 +1,17 @@
 import React from "react";
-import { Box, Typography, Grid, Paper, Divider } from "@mui/material";
+import { Box, Typography, Grid, Paper, Divider,useTheme,useMediaQuery } from "@mui/material";
 import TagsContainer from "../../../UI/TagsContainer";
 import { IPortfolio } from "../types";
 import ImageCarousel from "../../../components/image-carousel/ImageCarousel";
-import PortfolioCarousel from '../portfolio-carousel/PortfolioCarousel';
 import PortfolioList from "../portfolio-list/PortfolioList";
 import { useLabels } from "../../labels/useLabels";
 
 const PortfolioView: React.FC<IPortfolio> = (props: IPortfolio) => {
-    const { title, description, tags, imgs,id } = props
+    const { title, description, tags, imgs, id } = props
+
+    const theme = useTheme()
+
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
     const labels = useLabels()
 
@@ -30,7 +33,7 @@ const PortfolioView: React.FC<IPortfolio> = (props: IPortfolio) => {
                 }}>
                 <Grid container spacing={3}>
                     <Grid size={{ xs: 12, md: 6 }}>
-                        <ImageCarousel imgs={imgs.map((v) => { return { url: v, name: 'my-image' } })} />
+                        <ImageCarousel isMobile={isMobile} imgs={imgs.map((v) => { return { url: v, name: 'my-image' } })} />
                     </Grid>
                     <Grid size={{ xs: 12, md: 6 }}>
                         <Paper
@@ -44,7 +47,7 @@ const PortfolioView: React.FC<IPortfolio> = (props: IPortfolio) => {
                                 <Typography color='text.secondary' align="left">
                                     <Box component='span' color='text.primary'>{labels.description}: </Box>
                                     {description}
-                                    </Typography>
+                                </Typography>
                                 <Divider sx={{ mt: '10px', mb: '20px' }} />
                                 <TagsContainer tags={tags} />
                             </Box>
@@ -53,7 +56,7 @@ const PortfolioView: React.FC<IPortfolio> = (props: IPortfolio) => {
                     <Grid size={{ xs: 12 }}>
                         <Box sx={{ mb: '50px' }}>
                             <Divider sx={{ mt: '30px', mb: '50px' }} />
-                            <PortfolioList exceptId={id}/>
+                            <PortfolioList exceptId={id} />
                         </Box>
                     </Grid>
                 </Grid>

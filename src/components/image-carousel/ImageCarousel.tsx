@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Box, IconButton, MobileStepper, Paper } from '@mui/material';
+import { Box, IconButton, MobileStepper, Paper, useMediaQuery, useTheme } from '@mui/material';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import ZoomOnHoverImage from '../../UI/ZoomOnHoverImage';
 
 type Props = {
-   imgs: { url: string, name: string }[],
-   isMobile?:boolean
+  imgs: { url: string, name: string }[],
+  isMobile?: boolean
 }
 
-const ImageCarousel : React.FC<Props> = ({ imgs,isMobile }) => {
+const ImageCarousel: React.FC<Props> = ({ imgs, isMobile }) => {
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = imgs.length;
 
@@ -22,24 +22,40 @@ const ImageCarousel : React.FC<Props> = ({ imgs,isMobile }) => {
   };
 
   return (
-    <Box sx={{ 
-      width: '100%', 
+    <Box sx={{
+      width: '100%',
       flexGrow: 1,
-      bgcolor:'background.paper',
-      borderRadius:4,
-      }}>
-      <Box sx={{width:'100%',display:'flex' , justifyContent:'center',}}>
-        <ZoomOnHoverImage
-          src={imgs[activeStep].url}
-          alt={imgs[activeStep].name}
-          width={{xs:'100%',sm:'700px'}}
-          height='500px'
-        />
+      bgcolor: 'background.paper',
+      borderRadius: 4,
+    }}>
+      <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', }}>
+        {
+          isMobile ?
+            <Box sx={{ width: 'auto', height: '400px', display: 'flex', justifyContent: 'center', m: 1, p: 1 }}>
+              <Box
+                component='img'
+                src={imgs[activeStep].url}
+                sx={{
+                  maxWidth: "100%",
+                  height: "auto",
+                  display: "block",
+                  objectFit: "contain",
+                }}
+              />
+            </Box>
+            :
+            <ZoomOnHoverImage
+              src={imgs[activeStep].url}
+              alt={imgs[activeStep].name}
+              width={{ xs: '100%', sm: '700px' }}
+              height='500px'
+            />
+        }
       </Box>
 
       <MobileStepper
-      variant='progress'
-       steps={maxSteps}
+        variant='progress'
+        steps={maxSteps}
         position="static"
         activeStep={activeStep}
         nextButton={
@@ -52,15 +68,15 @@ const ImageCarousel : React.FC<Props> = ({ imgs,isMobile }) => {
             <KeyboardArrowLeft />
           </IconButton>
         }
-      sx={{
-        borderTopWidth:'1px',
-        borderTopStyle:'solid',
-        borderTopColor:'divider',
-        borderRadius:3,
-        width:'100%',
-        bgcolor:'background.paper',
-        px:'0px !important'
-      }}
+        sx={{
+          borderTopWidth: '1px',
+          borderTopStyle: 'solid',
+          borderTopColor: 'divider',
+          borderRadius: 3,
+          width: '100%',
+          bgcolor: 'background.paper',
+          px: '0px !important'
+        }}
       />
     </Box>
   );
