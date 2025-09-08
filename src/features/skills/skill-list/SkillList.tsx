@@ -3,7 +3,7 @@ import { Box,Grid } from "@mui/material"
 import SkillCard from "../SkillCard"
 import { useSkills } from "../useSkills"
 
-const SkillList = () => {
+const SkillList : React.FC = () => {
 
     const skills = useSkills()
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { IPortfolio } from "../types";
+import { Link } from "react-router-dom";
 import { Box, Typography, Paper, Button } from "@mui/material";
 import parseDate from '../../../utils/parse-date';
 import { useLabels } from "../../labels/useLabels";
@@ -8,19 +9,14 @@ const maxLength = 100
 
 type Props = {
     portfolio: IPortfolio,
-    onClick: (id: string) => void
 }
 
-const PortfolioCarouselItem: React.FC<Props> = ({ portfolio, onClick }) => {
+const PortfolioCarouselItem: React.FC<Props> = ({ portfolio }) => {
     const { title, description, imgs, tags, git, id, date } = portfolio
 
     const labels = useLabels()
 
     const displayDescription = description.length > maxLength ? `${description.slice(0, maxLength)}...` : description
-
-    const clickHandler = () => {
-        onClick(id)
-    }
 
     return (
         <Box sx={{ width: '300px', height: '100%', flexShrink: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: 1 }}>
@@ -44,7 +40,7 @@ const PortfolioCarouselItem: React.FC<Props> = ({ portfolio, onClick }) => {
                     </Typography>
                 </Box>
             </Box>
-            <Button variant="outlined" onClick={clickHandler} sx={{ m: 1 }}>
+            <Button component={Link} to={`/portfolio/${id}`} variant="outlined" sx={{ m: 1 }}>
                 {labels.show_more}
             </Button>
         </Box>

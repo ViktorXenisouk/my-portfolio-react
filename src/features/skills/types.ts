@@ -4,7 +4,7 @@ interface ISkill {
     title: string,
     description: string,
     experienceDescription: string,
-    image: ReactNode,
+    image: string,
     tags: string[]
     knowledgeTitle: string,
     knowledge: number, // 0 - 10
@@ -16,7 +16,7 @@ interface ISkillData {
     description_en: string,
     experienceDescription_ru: string,
     experienceDescription_en: string,
-    image: ReactNode,
+    image: string,
     tags: string[]
     knowledgeTitle_ru: string,
     knowledgeTitle_en: string,

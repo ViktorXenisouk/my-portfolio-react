@@ -1,8 +1,9 @@
 import React from "react"
-import { Paper, Grid, Box, Stack, Typography, Chip, Rating } from "@mui/material"
+import { Paper, Box, Stack, Typography, Rating } from "@mui/material"
 import TagsContainer from "../../UI/TagsContainer"
 import type { ISkill } from "./types"
 import { useLabels } from "../../features/labels/useLabels"
+import Image from "./components/Image"
 
 const SkillCard: React.FC<ISkill & { selectedTags: string[] }> = (props) => {
 
@@ -14,7 +15,7 @@ const SkillCard: React.FC<ISkill & { selectedTags: string[] }> = (props) => {
         <Paper variant="elevation" sx={{ height: '100%', display: 'flex', justifyContent: 'space-between', flexDirection: 'column' }}>
             <Typography color="text.primary" variant='h3' sx={{ textDecoration: 'underline', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2, p: 2 }}>
                 <Box sx={{ width: '100px', height: '100px', display: 'flex', alignItems: 'center' }}>
-                    {image}
+                    <Image url={image}/>
                 </Box>
                 {title}
             </Typography>
